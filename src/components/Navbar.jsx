@@ -74,6 +74,14 @@ function Navbar() {
                     >
                         Mitglied werden!
                     </a>
+                    <Link
+                        to="/spenden"
+                        onClick={() => setMenuOpen(false)}
+                        className="mb-4 focus:outline-none text-white bg-pink-500 hover:bg-pink-600 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-base px-6 py-3 w-11/12 text-center"
+                        style={{ textDecoration: 'none' }}
+                    >
+                        Spenden
+                    </Link>
                     <ul className="flex flex-col items-center w-full">
                         <li className="py-3 w-full text-center border-b border-gray-200">
                             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
@@ -86,9 +94,6 @@ function Navbar() {
                         </li>
                         <li className="py-3 w-full text-center">
                             <Link to="/kontakt" onClick={() => setMenuOpen(false)}>Kontakt</Link>
-                        </li>
-                        <li className="py-3 w-full text-center border-b border-gray-200">
-                            <Link to="/spenden" onClick={() => setMenuOpen(false)}>Spenden</Link>
                         </li>
                     </ul>
                 </nav>
