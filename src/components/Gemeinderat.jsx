@@ -45,9 +45,6 @@ const Gemeinderat = () => {
 
   return (
     <div className="bg-white/80 rounded-2xl shadow-xl border border-[#e0e7ff] px-2 sm:px-6 py-6 sm:py-8 w-full">
-      <h1 className="text-xl sm:text-2xl font-extrabold text-center text-[#1e293b] mb-6 tracking-tight drop-shadow-xl uppercase letter-spacing-wide">
-        Gemeinderat
-      </h1>
       <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
         {raete.map((rat) => {
           const imageUrl = getImageUrl(rat.bild, 400, 300);
