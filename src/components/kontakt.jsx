@@ -39,7 +39,6 @@ const ContactInfoOnly = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-10">
-      <h1 className="text-3xl md:text-5xl font-extrabold text-center mb-10 md:mb-16">Contact us</h1>
       <div className="flex flex-col md:flex-row gap-4 md:gap-8">
         {contactData.map(({ icon, title, content }, index) => (
           <ContactItem key={index} icon={icon} title={title} content={content} />
