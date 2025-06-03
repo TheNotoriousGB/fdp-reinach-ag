@@ -42,18 +42,20 @@ function Home() {
             Mehr erfahren
           </a>
           <a
-            className="bg-pink-500 w-[200px] rounded-md font-medium py-3 text-white hover:bg-pink-600 transition flex items-center justify-center text-center"
-            href="/spenden"
-          >
-            Spenden
-          </a>
-          <a
             className="bg-white text-[#002f6c] w-[200px] rounded-md font-medium py-3 hover:bg-gray-100 transition border border-[#002f6c] flex items-center justify-center text-center"
             href="https://www.fdp-ag.ch/mitglied-werden"
             target="_blank"
             rel="noopener noreferrer"
           >
             Jetzt Mitglied werden
+          </a>
+        </div>
+        <div className="flex justify-center mt-2">
+          <a
+            className="bg-pink-500 w-[200px] rounded-md font-medium py-3 text-white hover:bg-pink-600 transition flex items-center justify-center text-center"
+            href="/spenden"
+          >
+            Spenden
           </a>
         </div>
       </div>
