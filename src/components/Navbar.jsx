@@ -47,9 +47,6 @@ function Navbar() {
                     <li className="p-2 md:p-4 border-b-2 border-blue-900 border-opacity-0 hover:border-opacity-100 hover:text-blue-900 duration-200 cursor-pointer">
                         <Link to="/kontakt">Kontakt</Link>
                     </li>
-                    <li className="p-2 md:p-4 border-b-2 border-blue-900 border-opacity-0 hover:border-opacity-100 hover:text-blue-900 duration-200 cursor-pointer">
-                        <Link to="/spenden">Spenden</Link>
-                    </li>
                 </ul>
             </nav>
 
