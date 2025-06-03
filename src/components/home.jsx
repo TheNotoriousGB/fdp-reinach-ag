@@ -49,6 +49,12 @@ function Home() {
           >
             Jetzt Mitglied werden
           </a>
+          <a
+            className="bg-green-600 w-[200px] rounded-md font-medium py-3 text-white hover:bg-green-700 transition flex items-center justify-center text-center"
+            href="/spenden"
+          >
+            Spenden
+          </a>
         </div>
       </div>
 
