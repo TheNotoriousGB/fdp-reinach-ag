@@ -40,6 +40,9 @@ function Navbar() {
                     <li className="p-2 md:p-4 border-b-2 border-blue-900 border-opacity-0 hover:border-opacity-100 hover:text-blue-900 duration-200 cursor-pointer">
                         <Link to="/kontakt">Kontakt</Link>
                     </li>
+                    <li className="p-2 md:p-4 border-b-2 border-blue-900 border-opacity-0 hover:border-opacity-100 hover:text-blue-900 duration-200 cursor-pointer">
+                        <Link to="/spenden">Spenden</Link>
+                    </li>
                 </ul>
             </nav>
 
@@ -79,6 +82,9 @@ function Navbar() {
                         </li>
                         <li className="py-3 w-full text-center">
                             <Link to="/kontakt" onClick={() => setMenuOpen(false)}>Kontakt</Link>
+                        </li>
+                        <li className="py-3 w-full text-center border-b border-gray-200">
+                            <Link to="/spenden" onClick={() => setMenuOpen(false)}>Spenden</Link>
                         </li>
                     </ul>
                 </nav>

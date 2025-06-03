@@ -21,6 +21,10 @@ const footerNavs = [
         href: "https://www.fdp-kulm.ch/",
         name: "FDP Kulm",
     },
+    {
+        href: "/spenden",
+        name: "Spenden",
+    },
 ];
 
 const Footer = () => {
