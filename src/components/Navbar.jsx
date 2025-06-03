@@ -27,6 +27,13 @@ function Navbar() {
                 >
                     Mitglied werden!
                 </a>
+                <Link
+                    to="/spenden"
+                    className="mr-4 focus:outline-none text-white bg-[#009ee0] hover:bg-[#005fa3] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
+                    style={{ textDecoration: 'none' }}
+                >
+                    Spenden
+                </Link>
                 <ul className="flex items-center flex-wrap">
                     <li className="p-2 md:p-4 border-b-2 border-blue-900 border-opacity-0 hover:border-opacity-100 hover:text-blue-900 duration-200 cursor-pointer active">
                         <Link to="/">Home</Link>
