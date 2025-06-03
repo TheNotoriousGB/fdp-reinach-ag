@@ -14,10 +14,14 @@ const ReinachAg = () => (
       </div>
     </div>
     <div className="mt-10">
-      <EventSchedule />
+      <section className="w-full bg-gradient-to-br from-[#f8fafc] via-[#e6f4ff] to-[#cce6ff] py-8 px-2 sm:px-6 rounded-2xl shadow-lg border border-[#b3e0ff] max-w-4xl mx-auto">
+        <EventSchedule />
+      </section>
     </div>
     <div className="mt-10">
-      <Blog />
+      <section className="w-full bg-white py-8 px-2 sm:px-6 rounded-2xl shadow-lg border border-[#e0e7ff] max-w-5xl mx-auto">
+        <Blog />
+      </section>
     </div>
   </div>
 );
