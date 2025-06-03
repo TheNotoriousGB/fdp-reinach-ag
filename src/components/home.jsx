@@ -34,25 +34,23 @@ function Home() {
           Für eine innovative, freie und zukunftsorientierte Gemeinde Reinach, die Chancen nutzt und Verantwortung übernimmt.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4 my-6">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 my-6 w-full max-w-md mx-auto">
           <a
-            className="bg-[#009ee0] w-[200px] rounded-md font-medium py-3 text-white hover:bg-[#005fa3] transition flex items-center justify-center text-center"
+            className="bg-[#009ee0] w-full sm:w-[200px] rounded-xl font-semibold py-4 text-white hover:bg-[#005fa3] transition flex items-center justify-center text-center text-lg shadow-md"
             href="/ueber-uns"
           >
             Mehr erfahren
           </a>
           <a
-            className="bg-white text-[#002f6c] w-[200px] rounded-md font-medium py-3 hover:bg-gray-100 transition border border-[#002f6c] flex items-center justify-center text-center"
+            className="bg-white text-[#002f6c] w-full sm:w-[200px] rounded-xl font-semibold py-4 hover:bg-gray-100 transition border border-[#002f6c] flex items-center justify-center text-center text-lg shadow-md"
             href="https://www.fdp-ag.ch/mitglied-werden"
             target="_blank"
             rel="noopener noreferrer"
           >
             Jetzt Mitglied werden
           </a>
-        </div>
-        <div className="flex justify-center mt-2">
           <a
-            className="bg-pink-500 w-[200px] rounded-md font-medium py-3 text-white hover:bg-pink-600 transition flex items-center justify-center text-center"
+            className="bg-pink-500 w-full sm:w-[200px] rounded-xl font-semibold py-4 text-white hover:bg-pink-600 transition flex items-center justify-center text-center text-lg shadow-md"
             href="/spenden"
           >
             Spenden
