@@ -1,18 +1,15 @@
 import React from "react";
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
-
 const ContactItem = ({ icon: Icon, title, content }) => (
-  <div className="flex flex-col w-[33%] max-md:w-full p-4">
-    <div className="flex gap-5 items-center mb-4">
+  <div className="flex flex-col w-full sm:w-1/2 md:w-1/3 p-4 items-center text-center">
+    <div className="flex gap-5 items-center mb-4 justify-center">
       {Icon && <Icon className="w-8 h-8 text-indigo-900" />}
-      <h3 className="text-2xl font-bold">{title}</h3>
+      <h3 className="text-xl md:text-2xl font-bold">{title}</h3>
     </div>
-    <div className="text-lg leading-relaxed">{content}</div>
+    <div className="text-base md:text-lg leading-relaxed">{content}</div>
   </div>
 );
-
-
 
 const ContactInfoOnly = () => {
   const contactData = [
@@ -41,9 +38,9 @@ const ContactInfoOnly = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto p-10">
-      <h1 className="text-5xl font-extrabold text-center mb-16">Contact us</h1>
-      <div className="flex gap-8 max-md:flex-col">
+    <div className="max-w-6xl mx-auto p-4 md:p-10">
+      <h1 className="text-3xl md:text-5xl font-extrabold text-center mb-10 md:mb-16">Contact us</h1>
+      <div className="flex flex-col md:flex-row gap-4 md:gap-8">
         {contactData.map(({ icon, title, content }, index) => (
           <ContactItem key={index} icon={icon} title={title} content={content} />
         ))}

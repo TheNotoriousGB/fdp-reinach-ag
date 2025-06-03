@@ -33,10 +33,10 @@ const EventSchedule = () => {
           {events.map((event, index) => (
             <div
               key={event._id || index}
-              className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 py-6"
+              className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 py-4 sm:py-6"
             >
               {/* Zeit und Datum */}
-              <p className="w-full sm:w-48 text-lg font-medium text-[#009ee0] text-center sm:text-right shrink-0">
+              <p className="w-full sm:w-48 text-base sm:text-lg font-medium text-[#009ee0] text-center sm:text-right shrink-0">
                 <span className="block sm:inline">{formatDate(event.date)}</span>{' '}
                 <span className="block sm:inline">
                   {event.startTime} – {event.endTime}
@@ -44,7 +44,7 @@ const EventSchedule = () => {
               </p>
 
               {/* Titel mit Link oder ohne */}
-              <h3 className="text-lg font-semibold text-[#002f6c] text-center sm:text-left">
+              <h3 className="text-base sm:text-lg font-semibold text-[#002f6c] text-center sm:text-left">
                 {event.link ? (
                   <a
                     href={event.link}

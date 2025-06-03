@@ -88,19 +88,19 @@ const UeberUns = () => {
       </p>
       <h2 className="text-[#009ee0] text-xl md:text-2xl font-semibold text-center mb-2 tracking-wide uppercase relative z-10">Unsere Werte</h2>
       {/* Werte-Karten */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-8 my-8 relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 my-8 relative z-10">
         {werte.map((wert) => (
           <div
             key={wert.title}
-            className="bg-gradient-to-br from-[#e6f4ff] via-white to-[#cce6ff] rounded-xl shadow-md p-7 flex flex-col items-center text-center transition-all duration-300 hover:shadow-2xl hover:from-[#d0eaff] hover:to-[#b3e0ff] group cursor-pointer hover:-translate-y-2 hover:scale-105 border border-[#e0eaff]"
+            className="bg-gradient-to-br from-[#e6f4ff] via-white to-[#cce6ff] rounded-xl shadow-md p-5 md:p-7 flex flex-col items-center text-center transition-all duration-300 hover:shadow-2xl hover:from-[#d0eaff] hover:to-[#b3e0ff] group cursor-pointer hover:-translate-y-2 hover:scale-105 border border-[#e0eaff]"
           >
-            <div className="text-4xl mb-3 transition-transform duration-300 group-hover:scale-125 group-hover:text-[#009ee0] drop-shadow-lg">
+            <div className="text-3xl md:text-4xl mb-2 md:mb-3 transition-transform duration-300 group-hover:scale-125 group-hover:text-[#009ee0] drop-shadow-lg">
               {wert.icon}
             </div>
-            <h3 className="text-[#005baa] font-bold text-lg mb-2 tracking-wide transition-colors duration-300 group-hover:text-[#009ee0]">
+            <h3 className="text-[#005baa] font-bold text-base md:text-lg mb-1 md:mb-2 tracking-wide transition-colors duration-300 group-hover:text-[#009ee0]">
               {wert.title}
             </h3>
-            <p className="text-gray-700 text-base leading-relaxed transition-colors duration-300 group-hover:text-[#005baa]">
+            <p className="text-gray-700 text-sm md:text-base leading-relaxed transition-colors duration-300 group-hover:text-[#005baa]">
               {wert.text}
             </p>
           </div>

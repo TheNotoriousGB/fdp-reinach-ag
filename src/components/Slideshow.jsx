@@ -20,7 +20,7 @@ export default function Slideshow() {
   if (!images.length) return <p className="text-center">Lade Bilder...</p>;
 
   return (
-    <section className="relative w-full h-[500px] overflow-hidden rounded-lg bg-white my-8 mb-16 pb-4">
+    <section className="relative w-full h-48 sm:h-[350px] md:h-[500px] overflow-hidden rounded-lg bg-white my-8 mb-16 pb-4">
       {/* Bilder */}
       {images.map((img, i) => {
         const baseUrl = img.asset.url.split("?")[0];
