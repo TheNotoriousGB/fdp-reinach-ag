@@ -38,11 +38,13 @@ const ContactInfoOnly = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto p-4 md:p-10">
-      <div className="flex flex-col md:flex-row gap-4 md:gap-8">
-        {contactData.map(({ icon, title, content }, index) => (
-          <ContactItem key={index} icon={icon} title={title} content={content} />
-        ))}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e6f4ff] via-white to-[#cce6ff] py-6 px-1">
+      <div className="max-w-3xl w-full bg-white rounded-2xl shadow-2xl p-3 sm:p-8 mx-auto">
+        <div className="flex flex-col md:flex-row gap-2 sm:gap-4 md:gap-8">
+          {contactData.map(({ icon, title, content }, index) => (
+            <ContactItem key={index} icon={icon} title={title} content={content} />
+          ))}
+        </div>
       </div>
     </div>
   );

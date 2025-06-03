@@ -44,57 +44,53 @@ const Gemeinderat = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-[#e0e7ff] via-[#f8fafc] to-[#c7d2fe] py-10 sm:py-16 px-1 sm:px-8 max-w-7xl mx-auto min-h-screen rounded-3xl shadow-2xl border border-[#e0e7ff] transition-colors duration-700">
-      <h1 className="text-3xl sm:text-5xl font-extrabold text-center text-[#1e293b] mb-8 sm:mb-14 tracking-tight drop-shadow-2xl uppercase letter-spacing-wide">
-        Gemeinderat Reinach AG
+    <div className="bg-white/80 rounded-2xl shadow-xl border border-[#e0e7ff] px-2 sm:px-6 py-6 sm:py-8 w-full">
+      <h1 className="text-xl sm:text-2xl font-extrabold text-center text-[#1e293b] mb-6 tracking-tight drop-shadow-xl uppercase letter-spacing-wide">
+        Gemeinderat
       </h1>
-
-      <div className="grid gap-4 sm:gap-8 md:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
         {raete.map((rat) => {
-          const imageUrl = getImageUrl(rat.bild, 500, 400);
-
+          const imageUrl = getImageUrl(rat.bild, 400, 300);
           return (
             <div
               key={rat._id}
-              className="relative group bg-white/80 rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl cursor-pointer transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 hover:scale-102 sm:hover:scale-105 overflow-hidden border border-[#c7d2fe] hover:border-[#818cf8] backdrop-blur-sm"
+              className="relative group bg-white rounded-xl shadow-md hover:shadow-xl cursor-pointer transition-all duration-300 transform hover:-translate-y-1 hover:scale-103 overflow-hidden border border-[#c7d2fe] hover:border-[#818cf8] backdrop-blur-sm"
               onClick={() => setSelected(rat)}
             >
-              <div className="flex justify-center pt-6 sm:pt-8">
+              <div className="flex justify-center pt-3">
                 {imageUrl ? (
                   <img
                     src={imageUrl}
                     alt={rat.name}
-                    className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-full border-4 border-white shadow-lg group-hover:scale-105 sm:group-hover:scale-110 transition-transform duration-300 bg-white"
+                    className="w-16 h-16 sm:w-24 sm:h-24 object-cover rounded-full border-4 border-white shadow group-hover:scale-105 transition-transform duration-300 bg-white"
                     loading="lazy"
                   />
                 ) : (
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-200 flex items-center justify-center rounded-full text-gray-400 border-4 border-white shadow-md">
+                  <div className="w-16 h-16 sm:w-24 sm:h-24 bg-gray-200 flex items-center justify-center rounded-full text-gray-400 border-4 border-white shadow">
                     Kein Bild
                   </div>
                 )}
               </div>
-              <div className="p-4 sm:p-6 text-center">
-                <h2 className="text-lg sm:text-xl font-bold text-gray-800 group-hover:text-indigo-700 transition-colors duration-300">
+              <div className="p-2 sm:p-4 text-center">
+                <h2 className="text-sm sm:text-lg font-bold text-gray-800 group-hover:text-indigo-700 transition-colors duration-300">
                   {rat.name}
                 </h2>
-                <ul className="text-xs sm:text-sm text-gray-600 mt-2 space-y-1">
+                <ul className="text-xs sm:text-sm text-gray-600 mt-1 space-y-1">
                   {rat.funktionen?.map((fkt, idx) => (
                     <li key={idx}>{fkt}</li>
                   ))}
                 </ul>
               </div>
-              {/* Overlay Effekt */}
               <div className="absolute inset-0 bg-gradient-to-t from-indigo-100 via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300 pointer-events-none" />
             </div>
           );
         })}
       </div>
-
       {selected && (
         <Modal
           isOpen={true}
           onRequestClose={() => setSelected(null)}
-          className="bg-white w-full max-w-[98vw] sm:max-w-3xl mx-auto mt-4 sm:mt-10 rounded-2xl sm:rounded-3xl shadow-2xl outline-none p-2 sm:p-10 relative max-h-[95vh] overflow-y-auto animate-fadeIn border border-[#c7d2fe]"
+          className="bg-white w-full max-w-[98vw] sm:max-w-2xl mx-auto mt-2 sm:mt-4 rounded-2xl shadow-2xl outline-none p-2 sm:p-8 relative max-h-[95vh] overflow-y-auto animate-fadeIn border border-[#c7d2fe]"
           overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start z-50 transition-opacity duration-500 animate-fadeIn"
         >
           <button
@@ -107,29 +103,27 @@ const Gemeinderat = () => {
           <div className="text-center">
             {selected.bild ? (
               <img
-                src={getImageUrl(selected.bild, 600, 400)}
+                src={getImageUrl(selected.bild, 400, 300)}
                 alt={selected.name}
-                className="w-28 h-28 sm:w-40 sm:h-40 object-cover rounded-full border-4 border-white shadow-xl mx-auto mb-4 bg-white"
+                className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-full border-4 border-white shadow-xl mx-auto mb-4 bg-white"
                 loading="lazy"
               />
             ) : (
-              <div className="w-28 h-28 sm:w-40 sm:h-40 bg-gray-200 flex items-center justify-center rounded-full mx-auto mb-4 text-gray-400 border-4 border-white shadow-lg">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-200 flex items-center justify-center rounded-full mx-auto mb-4 text-gray-400 border-4 border-white shadow-lg">
                 Kein Bild
               </div>
             )}
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">{selected.name}</h2>
-            <ul className="text-gray-600 mb-4 text-sm sm:text-base">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">{selected.name}</h2>
+            <ul className="text-gray-600 mb-4 text-xs sm:text-base">
               {selected.funktionen?.map((f, idx) => (
                 <li key={idx}>{f}</li>
               ))}
             </ul>
-
             {selected.beschreibung && (
               <div className="text-left mt-4 sm:mt-6 prose prose-sm prose-gray max-w-none mx-auto bg-gray-50 rounded-xl p-2 sm:p-4 border border-[#e0e7ff]">
                 <PortableText value={selected.beschreibung} />
               </div>
             )}
-
             {selected.socialLinks?.length > 0 && (
               <div className="mt-4 sm:mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
                 {selected.socialLinks.map((link, idx) => (
