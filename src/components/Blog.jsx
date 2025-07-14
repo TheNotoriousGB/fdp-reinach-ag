@@ -8,8 +8,8 @@ const Blog = () => {
     const [expanded, setExpanded] = useState({});
     const [selectedPost, setSelectedPost] = useState(null);
     
-    // Helper function to generate Sanity image URLs showing full picture
-    const getSanityImageUrl = (imageAsset, width, height) => {
+    // Helper function to generate Sanity image URLs with proper cropping
+    const getSanityImageUrl = (imageAsset, width, height, mainImage = null) => {
         if (!imageAsset || !imageAsset._id) return '';
         
         // Convert Sanity image ID to proper format
@@ -20,7 +20,32 @@ const Blog = () => {
             .replace('-jpeg', '.jpeg')
             .replace('-webp', '.webp');
         
-        return `https://cdn.sanity.io/images/j5dg682b/production/${imageId}?w=${width}&h=${height}&fit=fill`;
+        let url = `https://cdn.sanity.io/images/j5dg682b/production/${imageId}`;
+        
+        // Add crop rectangle if crop data is available
+        if (mainImage && mainImage.crop) {
+            const crop = mainImage.crop;
+            // Extract original dimensions from image ID
+            const dimensionMatch = imageAsset._id.match(/-(\d+)x(\d+)-/);
+            if (dimensionMatch) {
+                const originalWidth = parseInt(dimensionMatch[1]);
+                const originalHeight = parseInt(dimensionMatch[2]);
+                
+                // Calculate crop rectangle
+                const left = Math.round(crop.left * originalWidth);
+                const top = Math.round(crop.top * originalHeight);
+                const right = Math.round((1 - crop.right) * originalWidth);
+                const bottom = Math.round((1 - crop.bottom) * originalHeight);
+                
+                url += `?rect=${left},${top},${right},${bottom}`;
+            }
+        }
+        
+        // Add sizing parameters
+        const separator = url.includes('?') ? '&' : '?';
+        url += `${separator}w=${width}&h=${height}&fit=crop&auto=format`;
+        
+        return url;
     };
     
     useEffect(() => {
@@ -76,13 +101,13 @@ const Blog = () => {
                             >
                                 {post.mainImage && post.mainImage.asset && (
                                     <img
-                                        src={getSanityImageUrl(post.mainImage.asset, 400, 300)}
+                                        src={getSanityImageUrl(post.mainImage.asset, 400, 300, post.mainImage)}
                                         alt={post.mainImage.alt || post.alt || post.title}
-                                        className="w-full h-40 sm:h-48 object-contain rounded-t-2xl mb-2 sm:mb-4"
+                                        className="w-full h-40 sm:h-48 object-cover rounded-t-2xl mb-2 sm:mb-4"
                                         loading="lazy"
-                                        onLoad={() => console.log('Image with hotspot loaded successfully')}
+                                        onLoad={() => console.log('Image loaded successfully')}
                                         onError={(e) => {
-                                            console.error('Hotspot image failed, trying direct URL:', e.target.src);
+                                            console.error('Cropped image failed, trying direct URL:', e.target.src);
                                             e.target.src = post.mainImage.asset.url;
                                         }}
                                     />
@@ -135,12 +160,12 @@ const Blog = () => {
                     <div className="text-center">
                         {selectedPost.mainImage && selectedPost.mainImage.asset && (
                             <img
-                                src={getSanityImageUrl(selectedPost.mainImage.asset, 800, 600)}
+                                src={getSanityImageUrl(selectedPost.mainImage.asset, 800, 600, selectedPost.mainImage)}
                                 alt={selectedPost.mainImage.alt || selectedPost.alt || selectedPost.title}
-                                className="w-full max-h-72 object-contain rounded-lg border-4 border-white shadow-lg mx-auto mb-4 bg-white"
+                                className="w-full max-h-96 object-cover rounded-lg border-4 border-white shadow-lg mx-auto mb-4 bg-white"
                                 loading="lazy"
                                 onError={(e) => {
-                                    console.error('Modal hotspot image failed, trying direct URL:', e.target.src);
+                                    console.error('Modal cropped image failed, trying direct URL:', e.target.src);
                                     e.target.src = selectedPost.mainImage.asset.url;
                                 }}
                             />
@@ -203,11 +228,11 @@ const Blog = () => {
                                         types: {
                                             image: ({value}) => (
                                                 <img 
-                                                    src={getSanityImageUrl(value.asset, 800, 600)} 
+                                                    src={getSanityImageUrl(value.asset, 800, 600)}
                                                     alt={value.alt || ''} 
-                                                    className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-4"
+                                                    className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-4 object-cover"
                                                     onError={(e) => {
-                                                        console.error('Content image hotspot failed, trying direct URL');
+                                                        console.error('Content image failed, trying direct URL');
                                                         e.target.src = value.asset?.url || '';
                                                     }}
                                                 />
