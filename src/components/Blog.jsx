@@ -66,15 +66,24 @@ const Blog = () => {
                                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center border border-[#e0eaff] overflow-hidden"
                             >
                                 {console.log(`Post "${post.title}" mainImage:`, post.mainImage)}
+                                {post.mainImage && post.mainImage.asset && console.log('Generated URL with focalpoint:', urlFor(post.mainImage).width(400).height(300).fit('crop').crop('focalpoint').url())}
+                                {post.mainImage && post.mainImage.hotspot && console.log('Hotspot data:', post.mainImage.hotspot)}
                                 {post.mainImage && post.mainImage.asset && (
                                     <img
-                                        src={post.mainImage.asset.url}
+                                        src={urlFor(post.mainImage)
+                                            .width(400)
+                                            .height(300)
+                                            .fit('crop')
+                                            .crop('focalpoint')
+                                            .url()}
                                         alt={post.mainImage.alt || post.alt || post.title}
                                         className="w-full h-40 sm:h-48 object-cover object-center rounded-t-2xl mb-2 sm:mb-4"
                                         loading="lazy"
                                         onError={(e) => {
                                             console.error('Image failed to load:', e.target.src);
                                             console.log('mainImage data:', post.mainImage);
+                                            // Fallback to direct asset URL
+                                            e.target.src = post.mainImage.asset.url;
                                         }}
                                     />
                                 )}
@@ -126,10 +135,20 @@ const Blog = () => {
                     <div className="text-center">
                         {selectedPost.mainImage && selectedPost.mainImage.asset && (
                             <img
-                                src={selectedPost.mainImage.asset.url}
+                                src={urlFor(selectedPost.mainImage)
+                                    .width(800)
+                                    .height(600)
+                                    .fit('crop')
+                                    .crop('focalpoint')
+                                    .url()}
                                 alt={selectedPost.mainImage.alt || selectedPost.alt || selectedPost.title}
                                 className="w-full max-h-72 object-contain rounded-lg border-4 border-white shadow-lg mx-auto mb-4 bg-white"
                                 loading="lazy"
+                                onError={(e) => {
+                                    console.error('Modal image failed to load:', e.target.src);
+                                    // Fallback to direct asset URL
+                                    e.target.src = selectedPost.mainImage.asset.url;
+                                }}
                             />
                         )}
                         <h2 className="text-2xl font-bold text-[#005baa] mb-2">{selectedPost.title}</h2>
@@ -190,7 +209,12 @@ const Blog = () => {
                                         types: {
                                             image: ({value}) => (
                                                 <img 
-                                                    src={value.asset?.url || urlFor(value).url()} 
+                                                    src={urlFor(value)
+                                                        .width(800)
+                                                        .height(600)
+                                                        .fit('crop')
+                                                        .crop('focalpoint')
+                                                        .url()} 
                                                     alt={value.alt || ''} 
                                                     className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-4"
                                                 />
