@@ -12,5 +12,13 @@ const builder = imageUrlBuilder(client);
 
 export function urlFor(source) {
   if (!source) return "";
-  return builder.image(source);
+  if (!source.asset) return "";
+  
+  try {
+    return builder.image(source);
+  } catch (error) {
+    console.error('urlFor error:', error);
+    // Return direct asset URL as fallback
+    return source.asset.url || "";
+  }
 }

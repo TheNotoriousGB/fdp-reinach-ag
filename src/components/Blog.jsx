@@ -61,12 +61,7 @@ const Blog = () => {
                             >
                                 {post.mainImage && post.mainImage.asset && (
                                     <img
-                                        src={urlFor(post.mainImage)
-                                            .width(400)
-                                            .height(300)
-                                            .fit('crop')
-                                            .crop('focalpoint')
-                                            .url()}
+                                        src={`https://cdn.sanity.io/images/j5dg682b/production/${post.mainImage.asset._id.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png')}?w=400&h=300&fit=crop&crop=focalpoint`}
                                         alt={post.mainImage.alt || post.alt || post.title}
                                         className="w-full h-40 sm:h-48 object-cover object-center rounded-t-2xl mb-2 sm:mb-4"
                                         loading="lazy"
@@ -125,12 +120,7 @@ const Blog = () => {
                     <div className="text-center">
                         {selectedPost.mainImage && selectedPost.mainImage.asset && (
                             <img
-                                src={urlFor(selectedPost.mainImage)
-                                    .width(800)
-                                    .height(600)
-                                    .fit('crop')
-                                    .crop('focalpoint')
-                                    .url()}
+                                src={`https://cdn.sanity.io/images/j5dg682b/production/${selectedPost.mainImage.asset._id.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png')}?w=800&h=600&fit=crop&crop=focalpoint`}
                                 alt={selectedPost.mainImage.alt || selectedPost.alt || selectedPost.title}
                                 className="w-full max-h-72 object-contain rounded-lg border-4 border-white shadow-lg mx-auto mb-4 bg-white"
                                 loading="lazy"
