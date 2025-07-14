@@ -8,7 +8,7 @@ const Blog = () => {
     const [expanded, setExpanded] = useState({});
     const [selectedPost, setSelectedPost] = useState(null);
     
-    // Helper function to generate Sanity image URLs with hotspot
+    // Helper function to generate Sanity image URLs with proper sizing
     const getSanityImageUrl = (imageAsset, width, height) => {
         if (!imageAsset || !imageAsset._id) return '';
         
@@ -20,7 +20,7 @@ const Blog = () => {
             .replace('-jpeg', '.jpeg')
             .replace('-webp', '.webp');
         
-        return `https://cdn.sanity.io/images/j5dg682b/production/${imageId}?w=${width}&h=${height}&fit=crop&crop=focalpoint`;
+        return `https://cdn.sanity.io/images/j5dg682b/production/${imageId}?w=${width}&h=${height}&fit=crop&crop=center`;
     };
     
     useEffect(() => {
