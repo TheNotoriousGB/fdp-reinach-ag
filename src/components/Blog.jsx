@@ -135,7 +135,7 @@ const Blog = () => {
                     <div className="text-center">
                         {selectedPost.mainImage && selectedPost.mainImage.asset && (
                             <img
-                                src={`https://cdn.sanity.io/images/j5dg682b/production/${selectedPost.mainImage.asset._id.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png')}?w=800&h=600&fit=crop&crop=focalpoint`}
+                                src={getSanityImageUrl(selectedPost.mainImage.asset, 800, 600)}
                                 alt={selectedPost.mainImage.alt || selectedPost.alt || selectedPost.title}
                                 className="w-full max-h-72 object-contain rounded-lg border-4 border-white shadow-lg mx-auto mb-4 bg-white"
                                 loading="lazy"
@@ -203,17 +203,12 @@ const Blog = () => {
                                         types: {
                                             image: ({value}) => (
                                                 <img 
-                                                    src={urlFor(value)
-                                                        .width(800)
-                                                        .height(600)
-                                                        .fit('crop')
-                                                        .crop('focalpoint')
-                                                        .url()} 
+                                                    src={getSanityImageUrl(value.asset, 800, 600)} 
                                                     alt={value.alt || ''} 
                                                     className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-4"
                                                     onError={(e) => {
                                                         console.error('Content image hotspot failed, trying direct URL');
-                                                        e.target.src = value.asset?.url || urlFor(value).url();
+                                                        e.target.src = value.asset?.url || '';
                                                     }}
                                                 />
                                             ),
