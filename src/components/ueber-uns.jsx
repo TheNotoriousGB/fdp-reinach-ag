@@ -53,7 +53,7 @@ const UeberUns = () => {
   });
 
   return (
-    <div className="max-w-4xl mx-auto my-10 px-4 py-10 bg-white rounded-2xl shadow-xl pt-28 md:pt-32 relative overflow-hidden">
+    <div className="max-w-4xl mx-auto my-10 px-4 py-10 bg-white pt-28 md:pt-32 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full z-0" style={{pointerEvents: 'none'}}>
         <svg viewBox="0 0 800 120" width="100%" height="80" preserveAspectRatio="none" className="block">
           <defs>
