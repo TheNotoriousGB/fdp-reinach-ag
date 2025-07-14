@@ -53,7 +53,19 @@ const Blog = () => {
             `*[_type == "post"] {
             title,
             slug,
-            body,
+            body[] {
+                ...,
+                _type == "image" => {
+                    ...,
+                    asset -> {
+                        _id,
+                        url
+                    },
+                    hotspot,
+                    crop,
+                    alt
+                }
+            },
             mainImage {
                 asset -> {
                     _id,
@@ -105,7 +117,6 @@ const Blog = () => {
                                         alt={post.mainImage.alt || post.alt || post.title}
                                         className="w-full h-40 sm:h-48 object-cover rounded-t-2xl mb-2 sm:mb-4"
                                         loading="lazy"
-                                        onLoad={() => console.log('Image loaded successfully')}
                                         onError={(e) => {
                                             console.error('Cropped image failed, trying direct URL:', e.target.src);
                                             e.target.src = post.mainImage.asset.url;
@@ -228,7 +239,7 @@ const Blog = () => {
                                         types: {
                                             image: ({value}) => (
                                                 <img 
-                                                    src={getSanityImageUrl(value.asset, 800, 600)}
+                                                    src={getSanityImageUrl(value.asset, 800, 600, value)}
                                                     alt={value.alt || ''} 
                                                     className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-4 object-cover"
                                                     onError={(e) => {
