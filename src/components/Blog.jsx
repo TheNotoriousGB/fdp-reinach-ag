@@ -61,15 +61,16 @@ const Blog = () => {
                             >
                                 {post.mainImage && post.mainImage.asset && (
                                     <img
-                                        src={urlFor(post.mainImage)
-                                            .width(400)
-                                            .height(300)
-                                            .fit('crop')
-                                            .crop('focalpoint')
-                                            .url()}
+                                        src={post.mainImage.asset.url}
                                         alt={post.mainImage.alt || post.alt || post.title}
                                         className="w-full h-40 sm:h-48 object-cover object-center rounded-t-2xl mb-2 sm:mb-4"
                                         loading="lazy"
+                                        onLoad={() => console.log('Image loaded successfully:', post.mainImage.asset.url)}
+                                        onError={(e) => {
+                                            console.error('Image failed to load:', e.target.src);
+                                            console.log('Trying urlFor approach...');
+                                            e.target.src = urlFor(post.mainImage).width(400).height(300).url();
+                                        }}
                                     />
                                 )}
                                 <div className="p-4 sm:p-6 flex flex-col flex-1 w-full">
@@ -120,15 +121,14 @@ const Blog = () => {
                     <div className="text-center">
                         {selectedPost.mainImage && selectedPost.mainImage.asset && (
                             <img
-                                src={urlFor(selectedPost.mainImage)
-                                    .width(800)
-                                    .height(600)
-                                    .fit('crop')
-                                    .crop('focalpoint')
-                                    .url()}
+                                src={selectedPost.mainImage.asset.url}
                                 alt={selectedPost.mainImage.alt || selectedPost.alt || selectedPost.title}
                                 className="w-full max-h-72 object-contain rounded-lg border-4 border-white shadow-lg mx-auto mb-4 bg-white"
                                 loading="lazy"
+                                onError={(e) => {
+                                    console.error('Modal image failed to load:', e.target.src);
+                                    e.target.src = urlFor(selectedPost.mainImage).width(800).height(600).url();
+                                }}
                             />
                         )}
                         <h2 className="text-2xl font-bold text-[#005baa] mb-2">{selectedPost.title}</h2>
@@ -189,12 +189,7 @@ const Blog = () => {
                                         types: {
                                             image: ({value}) => (
                                                 <img 
-                                                    src={urlFor(value)
-                                                        .width(800)
-                                                        .height(600)
-                                                        .fit('crop')
-                                                        .crop('focalpoint')
-                                                        .url()} 
+                                                    src={value.asset?.url || urlFor(value).width(800).height(600).url()} 
                                                     alt={value.alt || ''} 
                                                     className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-4"
                                                 />
