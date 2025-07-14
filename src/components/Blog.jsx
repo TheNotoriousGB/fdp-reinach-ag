@@ -18,7 +18,9 @@ const Blog = () => {
                 asset -> {
                     _id,
                     url
-                }
+                },
+                hotspot,
+                crop
             },
             alt,
             publishedAt,
@@ -56,9 +58,9 @@ const Blog = () => {
                                 key={slug}
                                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center border border-[#e0eaff] overflow-hidden"
                             >
-                                {post.mainImage?.asset?.url && (
+                                {post.mainImage && (
                                     <img
-                                        src={post.mainImage.asset.url}
+                                        src={urlFor(post.mainImage).width(400).height(192).fit('crop').crop('focalpoint').url()}
                                         alt={post.alt || post.title}
                                         className="w-full h-40 sm:h-48 object-cover object-center rounded-t-2xl mb-2 sm:mb-4"
                                         loading="lazy"
@@ -110,9 +112,9 @@ const Blog = () => {
                         &times;
                     </button>
                     <div className="text-center">
-                        {selectedPost.mainImage?.asset?.url && (
+                        {selectedPost.mainImage && (
                             <img
-                                src={selectedPost.mainImage.asset.url}
+                                src={urlFor(selectedPost.mainImage).width(800).height(400).fit('crop').crop('focalpoint').url()}
                                 alt={selectedPost.alt || selectedPost.title}
                                 className="w-full max-h-72 object-contain rounded-lg border-4 border-white shadow-lg mx-auto mb-4 bg-white"
                                 loading="lazy"
@@ -135,9 +137,57 @@ const Blog = () => {
                         )}
                         <div className="text-left mt-6 prose prose-sm prose-gray max-w-none mx-auto">
                             {Array.isArray(selectedPost.body) ? (
-                                <PortableText value={selectedPost.body} />
+                                <PortableText 
+                                    value={selectedPost.body}
+                                    components={{
+                                        block: {
+                                            normal: ({children}) => <p className="text-base leading-relaxed mb-4">{children}</p>,
+                                            h1: ({children}) => <h1 className="text-3xl font-bold text-[#005baa] mb-4">{children}</h1>,
+                                            h2: ({children}) => <h2 className="text-2xl font-bold text-[#005baa] mb-3">{children}</h2>,
+                                            h3: ({children}) => <h3 className="text-xl font-semibold text-[#005baa] mb-2">{children}</h3>,
+                                            h4: ({children}) => <h4 className="text-lg font-semibold text-[#005baa] mb-2">{children}</h4>,
+                                            blockquote: ({children}) => <blockquote className="border-l-4 border-[#009ee0] pl-4 italic text-gray-700 mb-4">{children}</blockquote>,
+                                            small: ({children}) => <p className="text-sm leading-relaxed mb-4">{children}</p>,
+                                            large: ({children}) => <p className="text-lg leading-relaxed mb-4">{children}</p>,
+                                            xlarge: ({children}) => <p className="text-xl leading-relaxed mb-4">{children}</p>,
+                                        },
+                                        marks: {
+                                            strong: ({children}) => <strong className="font-bold">{children}</strong>,
+                                            em: ({children}) => <em className="italic">{children}</em>,
+                                            underline: ({children}) => <u>{children}</u>,
+                                            'strike-through': ({children}) => <s>{children}</s>,
+                                            link: ({children, value}) => (
+                                                <a 
+                                                    href={value.href} 
+                                                    className="text-[#009ee0] hover:text-[#005baa] underline"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    {children}
+                                                </a>
+                                            ),
+                                        },
+                                        list: {
+                                            bullet: ({children}) => <ul className="list-disc ml-6 mb-4">{children}</ul>,
+                                            number: ({children}) => <ol className="list-decimal ml-6 mb-4">{children}</ol>,
+                                        },
+                                        listItem: {
+                                            bullet: ({children}) => <li className="mb-1">{children}</li>,
+                                            number: ({children}) => <li className="mb-1">{children}</li>,
+                                        },
+                                        types: {
+                                            image: ({value}) => (
+                                                <img 
+                                                    src={urlFor(value).width(800).height(600).fit('crop').crop('focalpoint').url()} 
+                                                    alt={value.alt || ''} 
+                                                    className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-4"
+                                                />
+                                            ),
+                                        },
+                                    }}
+                                />
                             ) : (
-                                <p>{selectedPost.body}</p>
+                                <p className="text-base leading-relaxed">{selectedPost.body}</p>
                             )}
                         </div>
                     </div>
