@@ -29,7 +29,7 @@ export default function Spenden() {
           </ul>
         </div>
         <div className="text-xs text-gray-500 mt-4">
-          Ihre Spende ist nicht steuerlich abzugsfähig.<br />Für Fragen kontaktieren Sie uns gerne.
+          Ihre Spende ist steuerlich abzugsfähig.<br />Für Fragen kontaktieren Sie uns gerne.
         </div>
       </div>
     </div>

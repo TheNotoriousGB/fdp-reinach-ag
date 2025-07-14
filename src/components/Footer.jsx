@@ -10,16 +10,16 @@ const footerNavs = [
         name: "Kontakt",
     },
     {
+        href: "https://www.fdp-kulm.ch/",
+        name: "FDP Kulm",
+    },
+    {
         href: "https://www.fdp-ag.ch/",
         name: "FDP Aargau",
     },
     {
         href: "https://www.fdp.ch/",
         name: "FDP Schweiz",
-    },
-    {
-        href: "https://www.fdp-kulm.ch/",
-        name: "FDP Kulm",
     },
     {
         href: "/spenden",
