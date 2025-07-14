@@ -8,7 +8,7 @@ const Blog = () => {
     const [expanded, setExpanded] = useState({});
     const [selectedPost, setSelectedPost] = useState(null);
     
-    // Helper function to generate Sanity image URLs with proper sizing
+    // Helper function to generate Sanity image URLs showing full picture
     const getSanityImageUrl = (imageAsset, width, height) => {
         if (!imageAsset || !imageAsset._id) return '';
         
@@ -20,7 +20,7 @@ const Blog = () => {
             .replace('-jpeg', '.jpeg')
             .replace('-webp', '.webp');
         
-        return `https://cdn.sanity.io/images/j5dg682b/production/${imageId}?w=${width}&h=${height}&fit=crop&crop=center`;
+        return `https://cdn.sanity.io/images/j5dg682b/production/${imageId}?w=${width}&h=${height}&fit=fill`;
     };
     
     useEffect(() => {
@@ -78,7 +78,7 @@ const Blog = () => {
                                     <img
                                         src={getSanityImageUrl(post.mainImage.asset, 400, 300)}
                                         alt={post.mainImage.alt || post.alt || post.title}
-                                        className="w-full h-40 sm:h-48 object-cover object-center rounded-t-2xl mb-2 sm:mb-4"
+                                        className="w-full h-40 sm:h-48 object-contain rounded-t-2xl mb-2 sm:mb-4"
                                         loading="lazy"
                                         onLoad={() => console.log('Image with hotspot loaded successfully')}
                                         onError={(e) => {
