@@ -20,7 +20,8 @@ const Blog = () => {
                     url
                 },
                 hotspot,
-                crop
+                crop,
+                alt
             },
             alt,
             publishedAt,
@@ -58,10 +59,15 @@ const Blog = () => {
                                 key={slug}
                                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center border border-[#e0eaff] overflow-hidden"
                             >
-                                {post.mainImage && (
+                                {post.mainImage && post.mainImage.asset && (
                                     <img
-                                        src={urlFor(post.mainImage).width(400).height(192).fit('crop').crop('focalpoint').url()}
-                                        alt={post.alt || post.title}
+                                        src={urlFor(post.mainImage)
+                                            .width(400)
+                                            .height(192)
+                                            .fit('crop')
+                                            .crop('focalpoint')
+                                            .url()}
+                                        alt={post.mainImage.alt || post.alt || post.title}
                                         className="w-full h-40 sm:h-48 object-cover object-center rounded-t-2xl mb-2 sm:mb-4"
                                         loading="lazy"
                                     />
@@ -112,10 +118,15 @@ const Blog = () => {
                         &times;
                     </button>
                     <div className="text-center">
-                        {selectedPost.mainImage && (
+                        {selectedPost.mainImage && selectedPost.mainImage.asset && (
                             <img
-                                src={urlFor(selectedPost.mainImage).width(800).height(400).fit('crop').crop('focalpoint').url()}
-                                alt={selectedPost.alt || selectedPost.title}
+                                src={urlFor(selectedPost.mainImage)
+                                    .width(800)
+                                    .height(400)
+                                    .fit('crop')
+                                    .crop('focalpoint')
+                                    .url()}
+                                alt={selectedPost.mainImage.alt || selectedPost.alt || selectedPost.title}
                                 className="w-full max-h-72 object-contain rounded-lg border-4 border-white shadow-lg mx-auto mb-4 bg-white"
                                 loading="lazy"
                             />
@@ -178,7 +189,12 @@ const Blog = () => {
                                         types: {
                                             image: ({value}) => (
                                                 <img 
-                                                    src={urlFor(value).width(800).height(600).fit('crop').crop('focalpoint').url()} 
+                                                    src={urlFor(value)
+                                                        .width(800)
+                                                        .height(600)
+                                                        .fit('crop')
+                                                        .crop('focalpoint')
+                                                        .url()} 
                                                     alt={value.alt || ''} 
                                                     className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-4"
                                                 />
