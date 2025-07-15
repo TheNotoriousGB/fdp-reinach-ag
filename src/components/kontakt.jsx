@@ -17,6 +17,7 @@ const ContactInfoOnly = () => {
       icon: PhoneIcon,
       title: "Telefon",
       content: <>062 551 51 51</>,
+      content: <>Whatsapp: +41 76 740 19 09</>
     },
     {
       icon: EnvelopeIcon,
