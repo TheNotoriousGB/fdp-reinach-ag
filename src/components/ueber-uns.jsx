@@ -1,4 +1,5 @@
 import React from "react";
+import Vorstand from './Vorstand';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 
 const werte = [
@@ -108,6 +109,17 @@ const UeberUns = () => {
       </div>
       {/* Abschnittstrenner */}
       <div className="flex justify-center my-6 relative z-10">
+        <span className="inline-block w-16 h-1 bg-gradient-to-r from-[#005baa] via-[#009ee0] to-[#005baa] rounded-full" />
+      </div>
+
+      <div className="relative z-10 mb-8">
+        <h2 className="text-[#005baa] text-3xl md:text-4xl font-extrabold mb-6 text-center tracking-wide">Unser Vorstand</h2>
+        <p className="text-lg md:text-xl text-gray-800 leading-relaxed mb-8 text-center max-w-2xl mx-auto">
+          Lernen Sie die engagierten Personen kennen, die sich für die Zukunft von Reinach einsetzen und unsere liberalen Werte in der Gemeinde vertreten.
+        </p>
+        <Vorstand />
+      </div>
+       <div className="flex justify-center my-6 relative z-10">
         <span className="inline-block w-16 h-1 bg-gradient-to-r from-[#005baa] via-[#009ee0] to-[#005baa] rounded-full" />
       </div>
       <div className="text-center mt-8 relative z-10">

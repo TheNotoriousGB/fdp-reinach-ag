@@ -9,7 +9,6 @@ const Gemeinderat = () => {
   const [raete, setRaete] = useState([]);
   const [selected, setSelected] = useState(null);
 
-  // Daten laden
   useEffect(() => {
     const query = `*[_type == "gemeinderat"] | order(name asc) {
       _id,
@@ -31,7 +30,6 @@ const Gemeinderat = () => {
       .catch((err) => console.error("Fetch error:", err));
   }, []);
 
-  // Bild-URL sicher generieren
   const getImageUrl = (bild, width = 400, height = 300) => {
     if (!bild || !bild.asset) return "";
     if (bild.asset._ref) {
